@@ -4,12 +4,14 @@ from rest_framework.response import Response
 
 class CheckUserType(APIView):
     permission_classes = [IsAuthenticated]
-
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         user = request.user
-        user_type = 'regular'
-        
+        user_groups = user.groups.all()
+        role_names = [group.name for group in user_groups]
+        # Add "superuser" if the user is a superuser
         if user.is_superuser:
-            user_type = 'superuser'
-        
-        return Response({'user_type': user_type})
+            role_names.append("superuser")
+        if not role_names:
+            role_names = ["No Role Assigned"]
+
+        return Response({"roles": role_names})
