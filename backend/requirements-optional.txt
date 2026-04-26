@@ -1,0 +1,15 @@
+# Optional packages that require Rust compilation
+# These may cause build issues on some platforms like Render
+# Install locally if needed: pip install -r requirements-optional.txt
+
+pgvector==0.2.4
+google-generativeai==0.8.5
+
+# Note: These packages have dependencies that require Rust toolchain
+# If you need vector database functionality, consider alternatives like:
+# - django-pgvector (if available)
+# - Use raw SQL for vector operations
+# 
+# If you need Google AI functionality, consider:
+# - Using Google Cloud client libraries
+# - Making direct API calls with requests
