@@ -10,7 +10,7 @@ elif ENV == "development":
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings.development')
 elif ENV == "stage":
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings.stage')
-elif ENV == "productions":
+elif ENV == "production":
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings.production')
 
 application = get_wsgi_application()

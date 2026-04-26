@@ -7,6 +7,9 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY =os.getenv("SECRET_KEY")
 
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+if not GEMINI_API_KEY:
+    raise Exception("GEMINI_API_KEY not set in environment variables")
 
 INSTALLED_APPS = [
     'django.contrib.admin',

@@ -7,6 +7,10 @@ class ApiConfig(AppConfig):
 
     def ready(self):
         import api.UserProfile
-        import api.TestAPI.model
-        import api.Address.model
+        import api.Patient.model
+        import api.Visit.model
+        import api.Symptom.model
+        import api.Medicine.model
+        import api.MedicineSymtom.model
+        import api.DoctorProfile.model
         

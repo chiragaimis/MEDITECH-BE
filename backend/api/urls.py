@@ -4,12 +4,18 @@ from django.urls import path,include
 from api.Permission import view as permissionView
 from api.Role import view as roleView
 from api.User import view as userView
-from api.TestAPI import view as TestView
-from api.Address import view as AddressView
+
 from api.ChangeMyPassword.view import ChangeMyPasswordView
 from api.ForgetPassword.view import PasswordResetRequestView
 from api.IsSuperUser.view import CheckUserType
 from api.CreateUser import views as createUserViews
+from api.Patient import view as patientView
+from api.Visit import view as visitView
+from api.Symptom.view import SymptomViewSet
+from api.Medicine.view import MedicineViewSet
+from api.MedicineSymtom.view import MedicineSymptomViewSet
+from api.DoctorProfile.view import DoctorProfileViewSet
+from api.CustomAPI.dashboard import DashboardView
 
 from rest_framework import routers
 from rest_framework import permissions
@@ -20,8 +26,13 @@ router=routers.DefaultRouter()
 router.register(r'user',userView.UserViewset, basename='user'),
 router.register(r'role',roleView.RoleViewset, basename='role'),
 router.register(r'permission', permissionView.PermissionViewset, basename='permission'),
-router.register(r'test', TestView.TestViewset, basename='test'),
-router.register(r'address',AddressView.AddressViewset,basename='address'),
+router.register(r'patient', patientView.PatientViewSet, basename='patient'),
+router.register(r'visit', visitView.VisitViewSet, basename='visit'),
+router .register(r'symptom', SymptomViewSet, basename='symptom'),
+router.register(r'medicinSymptom', MedicineSymptomViewSet, basename='medicineSymptom'),
+router.register(r'medicine', MedicineViewSet, basename='medicineSuggestion'),
+router.register(r'doctorProfile', DoctorProfileViewSet, basename='doctorProfile'),
+
 
 # Create a schema view for drf-yasg
 schema_view = get_schema_view(
@@ -46,4 +57,5 @@ urlpatterns = [
     # path('pass-reset/<str:temp_token>/', PasswordResetConfirmView.as_view(), name='pass-reset'),  # put it in security(auth) app's urls
     path('isSuperUser/', CheckUserType.as_view(), name='isSuperUser'),
     path('createUser/', createUserViews.CreateUserAPI.as_view(), name='create-user'),
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
 ]
